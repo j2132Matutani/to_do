@@ -1,5 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const pg = require('pg');
+
+const connection = new pg.Pool({
+  host: 'localhost',
+  user: 'root',
+  password: 'postgres',
+  database: 'todo_app',
+  port: 5432,
+  });
 
 let todos = [];
 
