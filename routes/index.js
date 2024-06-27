@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pg = require('pg');
+const knex = require('../db/knex');
 
 const connection = new pg.Pool({
   host: 'localhost',
