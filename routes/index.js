@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
 
-router.get('/', async function (req, res, next) {
+router.get('/', function (req, res, next) {
   const isAuth = req.isAuthenticated();
   if (isAuth) {
-    const user = await req.user
-    const userId = user != undefined ? user.id : null
+    const userId = req.user.id
     knex("tasks")
       .select("*")
       .where({user_id: userId})
@@ -33,10 +32,9 @@ router.get('/', async function (req, res, next) {
   }
 });
 
-router.post('/', async function (req, res, next) {
+router.post('/', function (req, res, next) {
   const isAuth = req.isAuthenticated();
-  const user = await req.user
-  const userId = user != undefined ? user.id : null
+  const userId = req.user.id
   const todo = req.body.add;
   knex("tasks")
     .insert({user_id: userId, content: todo})
