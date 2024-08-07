@@ -34,7 +34,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
   const isAuth = req.isAuthenticated();
-  const userId = req.user.id
+  const userId = req.user.id;
   const todo = req.body.add;
   knex("tasks")
     .insert({user_id: userId, content: todo})
